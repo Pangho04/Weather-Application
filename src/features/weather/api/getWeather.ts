@@ -8,7 +8,7 @@ import type {
   ForecastWeatherResponseDto,
 } from './types';
 
-const OPEN_WEATHER_KEY = import.meta.env.VITE_OEPN_WEATHER_API_KEY;
+const OPEN_WEATHER_KEY = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
 
 export const getNowWeather = async (
   lat: number,
