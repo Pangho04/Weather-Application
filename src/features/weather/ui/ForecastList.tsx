@@ -9,7 +9,15 @@ type Props = {
 };
 
 function ForecastList({ coords }: Props) {
-  const { data: forecastWeather } = useForecastWeatherQuery({ coords });
+  const { data: forecastWeather, isLoading } = useForecastWeatherQuery({ coords });
+
+  if (isLoading) {
+    return (
+      <Box styleProps="h-full items-start">
+        <div className="skeleton shadow-md h-3/5 w-full lg:w-3/5 mt-10" />
+      </Box>
+    );
+  }
 
   if (!forecastWeather) return <div />;
 

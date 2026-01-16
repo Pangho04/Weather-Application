@@ -7,7 +7,19 @@ type Props = {
 };
 
 function CurrentWeatherInfo({ coords }: Props) {
-  const { data: currentWeather } = useCurrentWeatherQuery({ coords });
+  const { data: currentWeather, isLoading } = useCurrentWeatherQuery({ coords });
+
+  if (isLoading) {
+    return (
+      <>
+        <Box styleProps="flex-col relative">
+          <div className="skeleton size-32 m-2" />
+          <div className="skeleton h-4 w-1/4 m-2" />
+        </Box>
+        <div className="skeleton h-12 w-1/3 lg:w-1/4 mr-4 ml-4" />
+      </>
+    );
+  }
 
   if (!currentWeather) return <div />;
 
