@@ -32,7 +32,7 @@ function ThemeController() {
       <input
         type="checkbox"
         value="synthwave"
-        className="toggle theme-controller w-10 h-5 bg-primary-content"
+        className="theme-controller toggle bg-red-200"
         onChange={handleToggle}
         checked={isDark}
       />
