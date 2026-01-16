@@ -1,1 +1,1 @@
-export { HomePage } from './ui/HomePage';
+export { WeatherDetail } from './ui/WeatherDetail';

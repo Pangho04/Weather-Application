@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { HomePage } from '@pages/home';
+import { WeatherDetail } from '@pages/home';
 import { WeatherSearch } from '@/features/weather-search';
 import ThemeController from '@/shared/ui/ThemeController/ThemeController';
 
@@ -8,7 +8,7 @@ export function AppRouter() {
     <BrowserRouter>
       <ThemeController />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<WeatherDetail />} />
         <Route path="/search" element={<WeatherSearch />} />
       </Routes>
     </BrowserRouter>
