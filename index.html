@@ -1,11 +1,40 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>날씨 애플리케이션</title>
+    <script>
+(function() {
+    const THEME_KEY = 'app-theme';
+
+    const applyTheme = () => {
+      const savedTheme = localStorage.getItem(THEME_KEY);
+
+      if (!savedTheme) {
+        const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const initialTheme = isDark ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', initialTheme);
+        localStorage.setItem(THEME_KEY, initialTheme); // 초기값 저장
+        return;
+      }
+
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    };
+
+    applyTheme();
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (!localStorage.getItem(THEME_KEY)) {
+        const newTheme = e.matches ? 'dark' : 'light';
+
+        document.documentElement.setAttribute('data-theme', newTheme);
+      }
+    });
+  })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
