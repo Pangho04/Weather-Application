@@ -5,7 +5,6 @@ import { useForecastWeatherQuery } from '@/features/weather/model';
 import CurrentWeatherInfo from '@/features/weather/ui/CurrentWeatherInfo';
 import DailyTempRange from '@/features/weather/ui/DailyTempRange';
 import ForecastList from '@/features/weather/ui/ForecastList';
-import TabWidget from '@/widgets/tabWidget/ui/TabWidget';
 import LocationHeader from '@/features/location/ui/LocationHeader';
 import { useCurrentCoords } from '@/features/location/model';
 
@@ -31,8 +30,6 @@ export function WeatherDetail() {
       </Box>
 
       <ForecastList coords={coords} />
-
-      <TabWidget />
     </div>
   );
 }
