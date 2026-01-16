@@ -7,32 +7,34 @@ function TabWidget() {
   const searchPath = '/search';
   const favoritesPath = '/favorites';
 
+  const tabList = [
+    {
+      text: '홈',
+      path: homePath,
+      isActive: location.pathname === homePath,
+    },
+    {
+      text: '검색',
+      path: searchPath,
+      isActive: location.pathname === searchPath,
+    },
+    {
+      text: '즐겨찾기',
+      path: favoritesPath,
+      isActive: location.pathname === favoritesPath,
+    },
+  ];
+
   return (
     <div
       role="tablist"
-      className="fixed bottom-20 left-1/2 -translate-x-1/2 tabs tabs-box tabs-xl z-50 shadow-lg bg-base-100/80 backdrop-blur bg-base-300"
+      className="fixed bottom-10 lg:bottom-20 left-1/2 -translate-x-1/2 tabs tabs-box tabs-lg w-max lg:tabs-xl z-50 shadow-lg bg-base-100/80 backdrop-blur bg-base-300"
     >
-      <a
-        role="tab"
-        className={`tab ${location.pathname === homePath && 'tab-active'}`}
-        href={homePath}
-      >
-        홈
-      </a>
-      <a
-        role="tab"
-        className={`tab ${location.pathname === searchPath && 'tab-active'}`}
-        href={searchPath}
-      >
-        검색
-      </a>
-      <a
-        role="tab"
-        className={`tab ${location.pathname === favoritesPath && 'tab-active'}`}
-        href={favoritesPath}
-      >
-        즐겨찾기
-      </a>
+      {tabList.map((tabinfo) => (
+        <a role="tab" className={`tab ${tabinfo.isActive && 'tab-active'}`} href={tabinfo.path}>
+          {tabinfo.text}
+        </a>
+      ))}
     </div>
   );
 }
