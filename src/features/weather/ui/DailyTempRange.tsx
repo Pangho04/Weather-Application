@@ -10,9 +10,9 @@ function DailyTempRange({ coords }: Props) {
 
   return (
     <Box styleProps="flex-col items-start">
-      <p className="text-2xl font-bold">⬆︎ {`${dailyExtremes?.todaysMaxTemp ?? 0} ℃`}</p>
+      <p className="text-lg lg:text-2xl font-bold">⬆︎ {`${dailyExtremes?.todaysMaxTemp ?? 0} ℃`}</p>
       <div className="divider m-0" />
-      <p className="text-2xl font-bold">⬇︎ {`${dailyExtremes?.todaysMinTemp ?? 0} ℃`}</p>
+      <p className="text-lg lg:text-2xl font-bold">⬇︎ {`${dailyExtremes?.todaysMinTemp ?? 0} ℃`}</p>
     </Box>
   );
 }

@@ -15,15 +15,15 @@ function CurrentWeatherInfo({ coords }: Props) {
     <>
       <Box styleProps="flex-col relative">
         <img
-          className="size-60"
+          className="size-32 lg:size-60"
           src={`${ICON_URL}${currentWeather.weather[0].icon}@4x.png`}
           alt={`${currentWeather.weather[0].description} icon`}
         />
-        <p className="absolute text-2xl font-bold bottom-4">
+        <p className="absolute text-xl lg:text-2xl font-bold bottom-2 lg:bottom-4">
           {currentWeather.weather[0].description}
         </p>
       </Box>
-      <p className="text-6xl font-bold pr-[24px]">{`${currentWeather.main.temp} ℃`}</p>
+      <p className="text-4xl lg:text-6xl font-bold pr-[16px] lg:pr-[24px]">{`${currentWeather.main.temp} ℃`}</p>
     </>
   );
 }

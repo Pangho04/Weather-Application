@@ -23,7 +23,7 @@ export function WeatherDetail() {
       <Box styleProps="flex-col">
         <LocationHeader />
 
-        <Box styleProps="pb-0">
+        <Box styleProps="pb-0 w-full justify-around lg:justify-center">
           <CurrentWeatherInfo coords={coords} />
           <DailyTempRange coords={coords} />
         </Box>
