@@ -27,7 +27,7 @@ function CurrentWeatherInfo({ coords }: Props) {
     <>
       <Box styleProps="flex-col relative">
         <img
-          className="size-32 lg:size-60"
+          className="size-32 lg:size-60 object-contain"
           src={`${ICON_URL}${currentWeather.weather[0].icon}@4x.png`}
           alt={`${currentWeather.weather[0].description} icon`}
         />
@@ -35,7 +35,7 @@ function CurrentWeatherInfo({ coords }: Props) {
           {currentWeather.weather[0].description}
         </p>
       </Box>
-      <p className="text-4xl lg:text-6xl font-bold pr-[16px] lg:pr-[24px]">{`${currentWeather.main.temp} ℃`}</p>
+      <p className="text-4xl lg:text-6xl landscape:text-3xl whitespace-nowrap font-bold pr-[16px] lg:pr-[24px]">{`${currentWeather.main.temp} ℃`}</p>
     </>
   );
 }

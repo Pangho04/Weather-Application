@@ -8,7 +8,7 @@ function LocationHeader() {
   }
 
   return (
-    <p className="text-3xl lg:text-6xl font-bold pt-[32px] lg:pt-[48px]">
+    <p className="text-3xl lg:text-6xl font-bold pt-[12px] lg:pt-[48px]">
       {locationInfo?.leafAddress}
     </p>
   );

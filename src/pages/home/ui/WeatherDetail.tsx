@@ -20,7 +20,7 @@ export function WeatherDetail() {
   }
 
   return (
-    <div className="w-full h-dvh flex flex-col landscape:flex-row landscape:justify-center landscape:gap-[24px] overflow-hidden">
+    <div className="w-full h-dvh flex flex-col landscape:flex-row landscape:justify-center landscape:gap-[12px] overflow-hidden">
       <Box styleProps="flex-col landscape:justify-start">
         <LocationHeader />
 
