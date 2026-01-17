@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import useOverlayAlert from '@/shared/hooks/useOverlayAlert';
 import useLocationToCoordsQuery from './useLocationToCoordsQuery';
 
 function useCurrentCoords() {
   const [coords, setCoords] = useState<GeolocationCoordinates | undefined>(undefined);
   const [searchParams] = useSearchParams();
+  const { showAlert, closeAlert } = useOverlayAlert();
 
   const location = searchParams.get('search');
 
@@ -19,9 +21,31 @@ function useCurrentCoords() {
    */
   useEffect(() => {
     if ('geolocation' in navigator && !location) {
-      navigator.geolocation.getCurrentPosition(async (position) => {
-        setCoords(position.coords);
-      });
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          setCoords(position.coords);
+        },
+        (error) => {
+          if (error.code === 1) {
+            const overlayId = showAlert({
+              title: '알림',
+              children: (
+                <p className="text-center text-lg pt-4 text-error flex justify-center items-center">
+                  위치 정보 권한이 없어 날씨 정보를 조회할 수 없습니다.
+                </p>
+              ),
+              buttons: [
+                {
+                  text: '확인',
+                  onClick: () => {
+                    closeAlert(overlayId);
+                  },
+                },
+              ],
+            });
+          }
+        },
+      );
 
       return;
     }
@@ -40,7 +64,7 @@ function useCurrentCoords() {
 
       setCoords(searchCoord);
     }
-  }, [location, data, isSuccess]);
+  }, [location, data, isSuccess, showAlert, closeAlert]);
 
   return { coords };
 }
