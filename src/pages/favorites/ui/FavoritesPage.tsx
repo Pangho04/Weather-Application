@@ -3,7 +3,7 @@ import { useScrollBottomFade } from '@/shared/hooks';
 import FavoritesCard from '@/features/favorites/ui/FavoritesCard';
 
 function FavoritesPage() {
-  const { favorites, onClickFavorite } = useFavoriteList();
+  const { favorites, handleClickFavorite, handleEditFavorite } = useFavoriteList();
   const { scrollRef, showBottomFade } = useScrollBottomFade<HTMLUListElement>({
     deps: [favorites],
   });
@@ -20,7 +20,8 @@ function FavoritesPage() {
             <FavoritesCard
               favorites={favorites}
               scrollRef={scrollRef}
-              onClickFavorite={onClickFavorite}
+              handleClickFavorite={handleClickFavorite}
+              handleEditFavorite={handleEditFavorite}
             />
             {showBottomFade && (
               <div className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none bg-gradient-to-t from-base-300 via-base-300/80 to-transparent" />

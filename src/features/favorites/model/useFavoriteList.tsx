@@ -1,9 +1,14 @@
 import { FAVORITES_LOCAL_STORAGE_KEY, MAX_FAVORITE_LIMIT } from '@/shared/lib/favorites.constants';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import useOverlayAlert from '@/shared/hooks/useOverlayAlert';
+import openEditFavoriteNameAlert from '../lib/openEditFavoriteNameAlert';
+
 import type { Favorite } from './types';
 
 function useFavoriteList() {
   const [favorites, setFavorites] = useState<Favorite[]>([]);
+  const editedNameRef = useRef<string>('');
+  const { showAlert, closeAlert } = useOverlayAlert();
 
   /**
    * @when 화면 진입 시
@@ -18,7 +23,7 @@ function useFavoriteList() {
     }
   }, []);
 
-  const onClickFavorite = useCallback(
+  const handleClickFavorite = useCallback(
     (address: string) => {
       if (favorites.some((favorite) => favorite.address === address)) {
         const newFavorites = favorites.filter((favorite) => favorite.address !== address);
@@ -42,7 +47,47 @@ function useFavoriteList() {
     [favorites],
   );
 
-  return { favorites, onClickFavorite };
+  const handleEditFavorite = useCallback(
+    (address: string) => {
+      const currentFavorite = favorites.find((favorite) => favorite.address === address);
+      const initialName = currentFavorite?.name || '';
+
+      editedNameRef.current = initialName;
+
+      openEditFavoriteNameAlert({
+        defaultValue: initialName,
+        inputRef: editedNameRef,
+        onClose: () => {
+          editedNameRef.current = '';
+        },
+        onSave: () => {
+          const nameToSave = editedNameRef.current.trim();
+
+          if (nameToSave.length < 1 || nameToSave.length > 10) return;
+
+          setFavorites((prevFavorites) => {
+            const newFavorites = prevFavorites.map((favorite) => {
+              if (favorite.address === address) {
+                return { ...favorite, name: nameToSave };
+              }
+
+              return favorite;
+            });
+
+            localStorage.setItem(FAVORITES_LOCAL_STORAGE_KEY, JSON.stringify(newFavorites));
+            return newFavorites;
+          });
+
+          editedNameRef.current = '';
+        },
+        showAlert,
+        closeAlert,
+      });
+    },
+    [favorites, showAlert, closeAlert],
+  );
+
+  return { favorites, handleClickFavorite, handleEditFavorite };
 }
 
 export default useFavoriteList;

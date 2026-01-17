@@ -5,7 +5,7 @@ import { useLocationQuery } from '../model';
 
 function LocationHeader() {
   const { data: locationInfo, isLoading } = useLocationQuery();
-  const { favorites, onClickFavorite } = useFavoriteList();
+  const { favorites, handleClickFavorite } = useFavoriteList();
 
   if (isLoading) {
     return <div className="skeleton h-12 w-1/3 lg:w-1/4" />;
@@ -19,7 +19,7 @@ function LocationHeader() {
       <button
         type="button"
         className="flex items-center pt-[12px] lg:pt-[48px]"
-        onClick={() => onClickFavorite(locationInfo?.leafAddress ?? '')}
+        onClick={() => handleClickFavorite(locationInfo?.leafAddress ?? '')}
       >
         <StartIcon
           active={favorites.some(

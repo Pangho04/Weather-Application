@@ -13,7 +13,7 @@ function SearchResultList({ fullResults }: Props) {
   const { scrollRef, showBottomFade } = useScrollBottomFade<HTMLUListElement>({
     deps: [fullResults],
   });
-  const { favorites, onClickFavorite } = useFavoriteList();
+  const { favorites, handleClickFavorite } = useFavoriteList();
 
   const handleSelectAddress = (address: string) => {
     navigate(`/?search=${encodeURIComponent(address)}`);
@@ -49,7 +49,7 @@ function SearchResultList({ fullResults }: Props) {
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
-                        onClickFavorite(address);
+                        handleClickFavorite(address);
                       }}
                       className="ml-2"
                     >
