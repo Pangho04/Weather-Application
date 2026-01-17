@@ -7,7 +7,7 @@ type Props = {
 };
 
 function CurrentWeatherInfo({ coords }: Props) {
-  const { data: currentWeather, isLoading } = useCurrentWeatherQuery({ coords });
+  const { data: currentWeather, isLoading, isSuccess } = useCurrentWeatherQuery({ coords });
 
   if (isLoading) {
     return (
@@ -21,22 +21,28 @@ function CurrentWeatherInfo({ coords }: Props) {
     );
   }
 
-  if (!currentWeather) return <div />;
-
   return (
-    <>
-      <Box styleProps="flex-col relative">
-        <img
-          className="size-32 lg:size-60 object-contain"
-          src={`${ICON_URL}${currentWeather.weather[0].icon}@4x.png`}
-          alt={`${currentWeather.weather[0].description} icon`}
-        />
-        <p className="absolute text-xl lg:text-2xl font-bold bottom-2 lg:bottom-4">
-          {currentWeather.weather[0].description}
+    <div className="flex items-center justify-center">
+      {!isSuccess ? (
+        <p className="text-center text-lg pt-4 text-error flex justify-center items-center">
+          해당 장소의 정보가 제공되지 않습니다.
         </p>
-      </Box>
-      <p className="text-4xl lg:text-6xl landscape:text-3xl whitespace-nowrap font-bold pr-[16px] lg:pr-[24px]">{`${currentWeather.main.temp} ℃`}</p>
-    </>
+      ) : (
+        <>
+          <Box styleProps="flex-col relative">
+            <img
+              className="size-32 lg:size-60 object-contain"
+              src={`${ICON_URL}${currentWeather.weather[0].icon}@4x.png`}
+              alt={`${currentWeather.weather[0].description} icon`}
+            />
+            <p className="absolute text-xl lg:text-2xl font-bold bottom-2 lg:bottom-4">
+              {currentWeather.weather[0].description}
+            </p>
+          </Box>
+          <p className="text-4xl lg:text-6xl landscape:text-3xl whitespace-nowrap font-bold pr-[16px] lg:pr-[24px]">{`${currentWeather.main.temp} ℃`}</p>
+        </>
+      )}
+    </div>
   );
 }
 

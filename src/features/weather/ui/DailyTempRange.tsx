@@ -6,7 +6,7 @@ type Props = {
 };
 
 function DailyTempRange({ coords }: Props) {
-  const { data: dailyExtremes, isLoading } = useDailyExtremesQuery({ coords });
+  const { data: dailyExtremes, isLoading, isSuccess } = useDailyExtremesQuery({ coords });
 
   if (isLoading) {
     return (
@@ -16,6 +16,10 @@ function DailyTempRange({ coords }: Props) {
         <div className="skeleton h-2 lg:h-4 w-3/4" />
       </Box>
     );
+  }
+
+  if (!isSuccess) {
+    return <div />;
   }
 
   return (

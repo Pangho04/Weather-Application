@@ -10,7 +10,7 @@ type Props = {
 };
 
 function ForecastList({ coords }: Props) {
-  const { data: forecastWeather, isLoading } = useForecastWeatherQuery({ coords });
+  const { data: forecastWeather, isLoading, isSuccess } = useForecastWeatherQuery({ coords });
 
   const { scrollRef, showBottomFade } = useScrollBottomFade<HTMLUListElement>({
     deps: [forecastWeather?.list.length],
@@ -24,7 +24,9 @@ function ForecastList({ coords }: Props) {
     );
   }
 
-  if (!forecastWeather) return <div />;
+  if (!isSuccess) {
+    return <div />;
+  }
 
   return (
     <Box styleProps="flex-col w-full overflow-hidden landscape:w-auto">
