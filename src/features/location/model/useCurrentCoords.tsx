@@ -8,7 +8,9 @@ function useCurrentCoords() {
 
   const location = searchParams.get('search');
 
-  const { data } = useLocationToCoordsQuery({ location: location || undefined });
+  const { data, isSuccess } = useLocationToCoordsQuery({
+    location: location || undefined,
+  });
 
   /**
    * @when 화면 진입 시
@@ -20,9 +22,11 @@ function useCurrentCoords() {
       navigator.geolocation.getCurrentPosition(async (position) => {
         setCoords(position.coords);
       });
+
+      return;
     }
 
-    if (location && data) {
+    if (location && data?.documents?.[0] && isSuccess) {
       const searchCoord = {
         latitude: Number(data.documents[0].y),
         longitude: Number(data.documents[0].x),
@@ -36,7 +40,7 @@ function useCurrentCoords() {
 
       setCoords(searchCoord);
     }
-  }, [location, data]);
+  }, [location, data, isSuccess]);
 
   return { coords };
 }
