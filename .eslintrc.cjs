@@ -52,6 +52,7 @@ module.exports = {
       },
     ],
     'react/require-default-props': 'off',
+    'consistent-return': 'off',
   },
   settings: {
     'import/resolver': {

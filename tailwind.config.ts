@@ -20,7 +20,9 @@ export default {
         ],
       },
       screens: {
-        landscape: { raw: '(max-height: 500px) and (orientation: landscape)' },
+        landscape: {
+          raw: '(max-height: 500px) and (orientation: landscape) and (max-width: 950px)',
+        },
       },
     },
   },
