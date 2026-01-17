@@ -1,0 +1,1 @@
+export { useScrollBottomFade } from './useScrollBottomFade';
