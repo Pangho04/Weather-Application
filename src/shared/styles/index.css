@@ -27,7 +27,6 @@ body,
   padding: 0;
   height: 100%;
   width: 100%;
-  overflow: hidden; /* 최상위에서 스크롤 방지 */
 }
 
 body {
