@@ -19,6 +19,9 @@ export default {
           'sans-serif',
         ],
       },
+      screens: {
+        landscape: { raw: '(max-height: 500px) and (orientation: landscape)' },
+      },
     },
   },
   plugins: [require('daisyui')],

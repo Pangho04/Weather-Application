@@ -11,8 +11,8 @@ export function WeatherDetail() {
 
   if (!coords) {
     return (
-      <div className="w-full h-dvh flex flex-col overflow-hidden">
-        <Box styleProps="h-full">
+      <div className="w-full h-dvh flex flex-col landscape:flex-row landscape:justify-center landscape:gap-[24px] overflow-hidden">
+        <Box styleProps="h-full landscape:justify-start">
           <span className="loading loading-spinner size-32" />
         </Box>
       </div>
@@ -20,11 +20,11 @@ export function WeatherDetail() {
   }
 
   return (
-    <div className="w-full h-dvh flex flex-col overflow-hidden">
-      <Box styleProps="flex-col">
+    <div className="w-full h-dvh flex flex-col landscape:flex-row landscape:justify-center landscape:gap-[24px] overflow-hidden">
+      <Box styleProps="flex-col landscape:justify-start">
         <LocationHeader />
 
-        <Box styleProps="pb-0 w-full justify-around lg:justify-center">
+        <Box styleProps="pb-0 w-full justify-around landscape:justify-center lg:justify-center">
           <CurrentWeatherInfo coords={coords} />
           <DailyTempRange coords={coords} />
         </Box>
