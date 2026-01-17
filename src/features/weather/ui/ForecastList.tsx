@@ -1,4 +1,4 @@
-import { ICON_URL } from '@/shared/assets/openWeather.constants';
+import { ICON_URL } from '@/shared/lib/openWeather.constants';
 import Box from '@/shared/ui/Box/Box';
 import { Fragment } from 'react/jsx-runtime';
 import { useForecastWeatherQuery } from '../model';
