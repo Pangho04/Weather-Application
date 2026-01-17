@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { WeatherDetail } from '@pages/home';
-import { WeatherSearch } from '@/features/weather-search';
+import SearchPage from '@/pages/search/ui/SearchPage';
 import ThemeController from '@/shared/ui/ThemeController/ThemeController';
 import TabWidget from '@/widgets/tabWidget/ui/TabWidget';
 
@@ -10,7 +10,7 @@ export function AppRouter() {
       <ThemeController />
       <Routes>
         <Route path="/" element={<WeatherDetail />} />
-        <Route path="/search" element={<WeatherSearch />} />
+        <Route path="/search" element={<SearchPage />} />
       </Routes>
       <TabWidget />
     </BrowserRouter>
